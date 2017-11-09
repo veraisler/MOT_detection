@@ -1,0 +1,23 @@
+Date, 		Time,		 Action
+
+28/09/2017,	07:36:34,	 Device Power-Up : Log erased due to user command
+28/09/2017,	07:37:48,	 Device Power-Up : 
+28/09/2017,	07:37:52,	 Device event : User Event
+28/09/2017,	07:37:54,	 Device event : User Event
+28/09/2017,	07:41:10,	 Power-Down : Button Press
+NA/NA/NANA, NA:NA:NA,	 System restart :  (00-00-00-00-00)
+NA/NA/NANA, NA:NA:NA,	 Device Power-Up : 
+NA/NA/NANA, NA:NA:NA,	 Device Wake-Up
+NA/NA/NANA, NA:NA:NA,	 Device Power-Up : 
+NA/NA/NANA, NA:NA:NA,	 Device Power-Up : 
+NA/NA/NANA, NA:NA:NA,	 Power-Down : Button Press
+NA/NA/NANA, NA:NA:NA,	 Device Power-Up : 
+NA/NA/NANA, NA:NA:NA,	 Device Wake-Up
+NA/NA/NANA, NA:NA:NA,	 Power-Down : Button Press
+NA/NA/NANA, NA:NA:NA,	 Device Power-Up : 
+NA/NA/NANA, NA:NA:NA,	 Device Wake-Up
+NA/NA/NANA, NA:NA:NA,	 Power-Down : Button Press
+NA/NA/NANA, NA:NA:NA,	 Device Power-Up : 
+NA/NA/NANA, NA:NA:NA,	 Device Wake-Up
+08/10/2017,	10:51:36,	 Power-Down : Button Press
+09/10/2017,	12:01:34,	 Device Power-Up : 

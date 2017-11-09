@@ -1,0 +1,9 @@
+Date, 		Time,		 Action
+
+09/10/2017,	12:23:42,	 Device Power-Up : Log erased due to user command
+09/10/2017,	12:24:01,	 Device Power-Up : 
+09/10/2017,	12:24:16,	 Power-Down : Button Press
+09/10/2017,	13:51:35,	 Device Power-Up : 
+09/10/2017,	13:51:36,	 Device Wake-Up
+09/10/2017,	14:53:12,	 Power-Down : Button Press
+10/10/2017,	07:40:25,	 Device Power-Up : 

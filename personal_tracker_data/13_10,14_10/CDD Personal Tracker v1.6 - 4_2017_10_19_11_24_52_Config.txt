@@ -1,0 +1,18 @@
+Tracker ID : CDD Personal Tracker v1.6 - 4
+Device model : CDD_PERSONAL_TRACKER
+Firmware ver. : 6.31
+Device rev. : 6
+MCU model : MSP430F5528
+H/W ID : 56-34-9B-6F-06-00-16-00
+Memory size : 3904897024 bytes
+RTC model : CRYSTAL
+IMU model : LSM303D
+ZigBee model : NONE
+Current Log Size  : 4.34 MB (4547280 bytes)
+GPS Interval : Continuous
+Recording Interval : 200 min
+Privacy Duration : 100 min
+Recording Duration : 50 secs
+Audio Disabled
+IMU Frequency (Hz) : 50
+Magnetometer logging enabled.

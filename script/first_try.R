@@ -4,6 +4,7 @@
 gps_9okt <- read_gps("personal_tracker_data\\9_10_17\\CDD Personal Tracker v1.6 - 4_2017_10_10_09_41_16_Location.csv")
 imu_9okt <- read_imu("personal_tracker_data\\9_10_17\\CDD Personal Tracker v1.6 - 4_2017_10_10_09_41_16_IMU.csv")
 
+#add distance and bearing
 gps_9okt$dist <- get_distance(gps_9okt)
 gps_9okt$bearing <- get_bearing(gps_9okt)
 
@@ -16,15 +17,25 @@ mean.xts <- period.apply(dat.xts, INDEX=endpoints(dat.xts, "minutes"), FUN=mean)
 
 merge_9okt <- merge_sources(gps_9okt,imu_9okt)
 
+# read labeled file
+label_9okt <- read.table("personal_tracker_data\\9_10_17\\labelled_shiny.txt", header= TRUE, sep = ",")
+label_9okt$ts <- as.POSIXct(label_9okt$ts)
+
+# leaflet map for gps-overview
 gps_9okt.sp <- gps_9okt
 coordinates(gps_9okt.sp)<-~ Longitude+Latitude
 
-m <- leaflet() %>%
+lines <- points_to_line(gps_9okt.sp, Longitude, Latitude)
+
+m <- leaflet(lines) %>%
   
   addTiles() %>%
-  addCircles(data=gps_9okt.sp,radius=0.1)
+  addCircles(data=gps_9okt.sp,radius=0.01)%>%
+  addPolylines()
 m
 
+
+# plot acceleration
 plot(imu_9okt$ts,imu_9okt$acc_tot,type="l")
 
 #### 13.10.2017 Drive to Dömitz + Cycling to Hitzacker ####
@@ -89,9 +100,14 @@ matplot(imu_3nov$ts, cbind(imu_3nov$Acc_X.mg.,imu_3nov$Acc_Y.mg.,imu_3nov$Acc_Z.
 gps_3nov_2 <- read_gps("personal_tracker_data\\03_11_17\\CDD Personal Tracker v1.6 - 4_2017_11_03_16_51_14_Location.csv")
 imu_3nov_2 <- read_imu("personal_tracker_data\\03_11_17\\CDD Personal Tracker v1.6 - 4_2017_11_03_16_51_14_IMU.csv")
 
-gps_3nov_2$dist <- get_distance(gps_3nov_2)
-merge_3nov_2 <- merge_sources(gps_3nov_2,imu_3nov_2)
+# read labeled file
+label_3nov_2 <- read.table("personal_tracker_data\\03_11_17\\labeled_shiny2", header= TRUE, sep = ",")
+label_3nov_2$ts <- as.POSIXct(label_3nov_2$ts)
 
+label_3nov_2$dist <- get_distance(label_3nov_2)
+label_3nov_2$bearing <- get_bearing(label_3nov_2)
+
+# leaflet map for gps-overview
 gps_3nov_2.sp <- gps_3nov_2
 coordinates(gps_3nov_2.sp)<-~ Longitude+Latitude
 
@@ -121,3 +137,40 @@ m <- leaflet() %>%
 m
 
 plot(imu_6nov$ts,imu_6nov$acc_tot,type="l")
+
+#### 9.11.2017 Train + Tram to Busin ####
+gps_9nov <- read_gps("personal_tracker_data\\9_11_17\\CDD Personal Tracker v1.6 - 4_2017_11_13_09_36_19_Location.csv")
+imu_9nov <- read_imu("personal_tracker_data\\9_11_17\\CDD Personal Tracker v1.6 - 4_2017_11_13_09_36_19_IMU.csv")
+
+gps_9nov$dist <- get_distance(gps_9nov)
+gps_9nov$bearing <- get_bearing(gps_9nov)
+
+#calculating mean of speed/min
+gps_9nov_1minmean <- aggregate(gps_9nov$Speed, list(rep(1:(nrow(gps_9nov)%/%60+1),each=60,len=nrow(gps_9nov))),mean)[-1];
+
+dat.xts <- xts(gps_9nov$Speed,
+               as.POSIXct(gps_9nov$ts))
+mean.xts <- period.apply(dat.xts, INDEX=endpoints(dat.xts, "minutes"), FUN=mean)
+
+merge_9nov <- merge_sources(gps_9nov,imu_9nov)
+
+gps_9nov.sp <- gps_9nov
+coordinates(gps_9nov.sp)<-~ Longitude+Latitude
+
+m <- leaflet() %>%
+  
+  addTiles() %>%
+  addCircles(data=gps_9nov.sp,radius=0.1)
+m
+
+plot(imu_9nov$ts,imu_9nov$acc_tot,type="l")
+
+
+
+
+#### creating segments ####
+
+
+
+
+

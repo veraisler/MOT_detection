@@ -149,7 +149,9 @@ merge_sources <- function(gps, imu){
            VDOP = NA,
            HDOP = NA,
            Speed = NA,
-           flag_interpol = NA)
+           flag_interpol = NA,
+           dist= NA,
+           bearing = NA)
   print(str(as.numeric(imu$ts)))
   print(str(as.numeric(gps$ts)))
   save(imu, file = "imu.rda")
@@ -167,9 +169,9 @@ merge_sources <- function(gps, imu){
   
   print("Filling GPS info to IMU")
   imu$flag_gps[matches] <- TRUE
-  header <- c("Longitude", "Latitude", "Satellites", "Altitude", "VDOP", "HDOP", "Speed", "flag_interpol")
+  header <- c("Longitude", "Latitude", "Satellites", "Altitude", "VDOP", "HDOP", "Speed", "flag_interpol","dist","bearing")
   imu[matches, header] <- gps[, header]
-  imu <- fill(imu, Longitude, Latitude, Satellites, Altitude, VDOP, HDOP, Speed, flag_interpol)
+  imu <- fill(imu, Longitude, Latitude, Satellites, Altitude, VDOP, HDOP, Speed, flag_interpol, bearing)
   imu[is.na(imu)] <- 0
   return(imu)
 }

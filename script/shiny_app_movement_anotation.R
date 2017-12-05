@@ -102,8 +102,8 @@ server <- function(input, output) {
   
   # Having (small) dummy datasets allows also Users with no data to see
   #   how the thing works. Also eliminates ugly error messages.
-  dummy_gps <- read_gps("D:\\Daten\\Eigene Dokumente\\Studium\\Masterthesis\\personal_trackers\\personal_tracker_data\\9_10_17\\CDD Personal Tracker v1.6 - 4_2017_10_10_09_41_16_Location.csv")
-  dummy_imu <- read_imu("D:\\Daten\\Eigene Dokumente\\Studium\\Masterthesis\\personal_trackers\\personal_tracker_data\\8_10_17\\CDD Personal Tracker v1.6 - 4_2017_10_09_14_10_10_IMU.csv")
+  dummy_gps <- read_gps("D:\\Daten\\Eigene Dokumente\\Studium\\Masterthesis\\personal_trackers_git\\personal_tracker_data\\9_10_17\\CDD Personal Tracker v1.6 - 4_2017_10_10_09_41_16_Location.csv")
+  dummy_imu <- read_imu("D:\\Daten\\Eigene Dokumente\\Studium\\Masterthesis\\personal_trackers_git\\personal_tracker_data\\8_10_17\\CDD Personal Tracker v1.6 - 4_2017_10_09_14_10_10_IMU.csv")
   
   # All the (reactive) values are stored here
   values <- reactiveValues(

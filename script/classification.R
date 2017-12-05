@@ -1,27 +1,28 @@
 #Classification
 
-plot(gps_13okt$Speed,gps_13okt$id)
-abline(v=25)
+plot(merge_9okt$Speed,merge_9okt$id)
+abline(v=7)
 
 # visual speed-threshold at 25km/h -> less = bike, more = car
-
+walk =ifelse(merge_9okt$flag_mode_imu==3,1,0)
+merge_9okt <- data.frame(merge_9okt, walk)
 #logistic regression
 # glm
-train = (gps_13okt$Satellites <11)
-gps_13okt_100 = gps_13okt[!train,]
-dim(gps_13okt_100)
-cycling_100=cycling[!train]
+train = (merge_9okt$ts > "2017-10-09 14:00:00:00")
+merge_9okt_100 = merge_9okt[!train,]
+dim(merge_9okt_100)
+flag_mode_100=merge_9okt$walk[!train]
 
-glm.fits =glm(cycling~Speed,data = gps_13okt, family=binomial, subset=train)
-glm.probs=predict(glm.fits,gps_13okt_100,type="response")
-glm.pred=rep("no",2227)
-glm.pred[glm.probs<.4]="yes"
-table(glm.pred,cycling_100)
-mean(glm.pred==cycling_100) 
-mean(glm.pred!=cycling_100) # test set error rate
+glm.fits =glm(walk~Speed+acc_tot+dist+bearing, data = merge_9okt, family=binomial, subset=train)
+glm.probs=predict(glm.fits,merge_9okt_100,type="response")
+glm.pred=rep("no",25201)
+glm.pred[glm.probs<0.5]="yes"
+table(glm.pred,flag_mode_100)
+mean(glm.pred==flag_mode_100) 
+mean(glm.pred!=flag_mode_100) # test set error rate
 
 # LDA (linear discriminant analysis)
-lda.fit = lda(cycling~Speed, data= gps_13okt,subset=train)
+lda.fit = lda(cycling~Speed, data= merge_9okt,subset=train)
 lda.fit
 plot(lda.fit)
 
